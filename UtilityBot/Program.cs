@@ -30,7 +30,7 @@ namespace UtilityBot
         static void ConfigureServices(IServiceCollection services)
         {
             // Регистрируем объект TelegramBotClient c токеном подключения
-            services.AddSingleton<ITelegramBotClient>(provider => new TelegramBotClient(Settings.BuildAppSettings().BotToken));
+            services.AddSingleton<ITelegramBotClient>(provider => new TelegramBotClient(JsonReader.ReadJson().BotToken));
             services.AddTransient<DefaultMessageController>();
             services.AddTransient<TextMessageController>();
             services.AddTransient<InlineKeyboardController>();
