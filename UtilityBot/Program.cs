@@ -14,8 +14,8 @@ namespace UtilityBot
     {
         public static async Task Main()
         {
-            Console.OutputEncoding = Encoding.Unicode;
-
+            Console.OutputEncoding = Encoding.Unicode;                   
+            
             // Объект, отвечающий за постоянный жизненный цикл приложения
             var host = new HostBuilder()
                 .ConfigureServices((hostContext, services) => ConfigureServices(services)) // Задаем конфигурацию
@@ -30,7 +30,7 @@ namespace UtilityBot
         static void ConfigureServices(IServiceCollection services)
         {
             // Регистрируем объект TelegramBotClient c токеном подключения
-            services.AddSingleton<ITelegramBotClient>(provider => new TelegramBotClient(AppSettings.BuildAppSettings().BotToken));
+            services.AddSingleton<ITelegramBotClient>(provider => new TelegramBotClient(Settings.BuildAppSettings().BotToken));
             services.AddTransient<DefaultMessageController>();
             services.AddTransient<TextMessageController>();
             services.AddTransient<InlineKeyboardController>();
