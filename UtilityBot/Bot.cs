@@ -29,7 +29,7 @@ namespace UtilityBot
             _defaultMessageController = defaultMessageController;
         }
 
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
             _telegramClient.StartReceiving(
                 HandleUpdateAsync,
@@ -38,6 +38,7 @@ namespace UtilityBot
                 cancellationToken: stoppingToken);
 
             Console.WriteLine("Бот запущен");
+            return Task.CompletedTask;
         }
 
         async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)

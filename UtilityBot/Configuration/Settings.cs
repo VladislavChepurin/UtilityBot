@@ -8,15 +8,5 @@
         {
             BotToken = botToken;
         }
-
-        /*
-        public static Settings BuildAppSettings()
-        {
-            return new Settings()
-            {
-                BotToken = "5484750036:AAHUPPiDQGqhLks6Y8PckUYwmrp6Az9-bRU"
-            };
-        }
-        */
     }
 }

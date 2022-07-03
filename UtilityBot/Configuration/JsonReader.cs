@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Text.Json;
 
 namespace UtilityBot.Configuration
@@ -10,8 +8,16 @@ namespace UtilityBot.Configuration
     {
         public static Settings ReadJson()
         {
-            using FileStream fs = new FileStream("settings.json", FileMode.OpenOrCreate);
-            return JsonSerializer.Deserialize<Settings>(fs);
+            try
+            {
+                using FileStream fs = new FileStream("settings.json", FileMode.OpenOrCreate);
+                return JsonSerializer.Deserialize<Settings>(fs);
+            }
+            catch (JsonException)
+            {
+                Console.WriteLine("Файл settings.json отсутствует или поврежден. Обратитесь к администратору ресурса.");
+                return null;
+            }    
         }
     }
 }

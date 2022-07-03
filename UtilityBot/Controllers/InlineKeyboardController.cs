@@ -31,7 +31,7 @@ namespace UtilityBot.Controllers
                 _ => String.Empty
             };                     
 
-            Console.WriteLine($"Контроллер {GetType().Name} обнаружил нажатие на кнопку, {languageText}");
+            Console.WriteLine($"Пользователь нажал на кнопку, {languageText}");
             await _telegramClient.SendTextMessageAsync(callbackQuery.From.Id, $"Выбрано, {languageText}", cancellationToken: ct);
         }
     }

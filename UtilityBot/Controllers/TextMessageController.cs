@@ -11,19 +11,15 @@ using UtilityBot.Servises;
 
 namespace UtilityBot.Controllers
 {
-
     public class TextMessageController
     {
         private readonly ITelegramBotClient _telegramClient;
-        //
         private readonly IStorage _memoryStorage;
-        //
+
         public TextMessageController(ITelegramBotClient telegramBotClient, IStorage memoryStorage)
         {
             _telegramClient = telegramBotClient;
-            //
             _memoryStorage = memoryStorage;
-            //
         }
         public async Task Handle(Message message, CancellationToken ct)
         {
@@ -52,7 +48,7 @@ namespace UtilityBot.Controllers
                             //Здесь парсим и складыаем 
                             try
                             {
-                                await _telegramClient.SendTextMessageAsync(message.Chat.Id, $"Сумма введенных значений: {StringExtension.SumParse(message.Text)}", cancellationToken: ct);
+                                await _telegramClient.SendTextMessageAsync(message.Chat.Id, $"Сумма введенных значений: {message.Text.SumParse()}", cancellationToken: ct);
                             }
                             catch (ArgumentException e)
                             {
@@ -60,8 +56,8 @@ namespace UtilityBot.Controllers
                             }     
                             break;
                         default:
-                            //User Exception
-                            throw new ArgumentException("Ошибка пользовательской сессии");
+                            // Такого быть недолжно
+                            throw new Exception("Ошибка пользовательской сессии");
                     }      
                     break;
             }
